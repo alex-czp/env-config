@@ -1,0 +1,37 @@
+version: '3'
+
+networks:
+   app:
+     driver: bridge
+
+volumes:
+  db:
+
+services:
+  mysql: 
+    image: mysql
+    container_name: mysql
+    # privileged: true
+    restart: always
+    ports: 
+      - "3306:3306"
+    networks:
+      - app
+    expose:
+      - "3306"
+    volumes:
+      - "db:/var/lib/mysql"
+  
+  sonar: 
+    image: sonarqube
+    container_name: sonar
+    # privileged: true
+    restart: always
+    ports: 
+      - "3306:3306"
+    networks:
+      - app
+    expose:
+      - "3306"
+    volumes:
+      - "db:/var/lib/mysql"
