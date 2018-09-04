@@ -1,37 +1,30 @@
 version: '3'
 
 networks:
-   app:
+   CI:
      driver: bridge
 
 volumes:
   db:
+  gitlab_config:
+  gitlab_log:
+  gitlab_data:
 
 services:
-  mysql: 
-    image: mysql
-    container_name: mysql
-    # privileged: true
+  gitlab:
+    image: 'beginor/gitlab-ce:11.1.4-ce.0'
     restart: always
-    ports: 
-      - "3306:3306"
-    networks:
-      - app
-    expose:
-      - "3306"
+    hostname: 'gitlab.alexc.cn'
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+      # external_url 'https://gitlab.example.com'
+      # Add any other gitlab.rb configuration here, each on its own line
+    ports:
+      - '8080:80'
+      - '8443:443'
+      - '822:22'
     volumes:
-      - "db:/var/lib/mysql"
-  
-  sonar: 
-    image: sonarqube
-    container_name: sonar
-    # privileged: true
-    restart: always
-    ports: 
-      - "3306:3306"
-    networks:
-      - app
-    expose:
-      - "3306"
-    volumes:
-      - "db:/var/lib/mysql"
+      - 'gitlab_config:/etc/gitlab'
+      - 'gitlab_log:/var/log/gitlab'
+      - 'gitlab_data:/var/opt/gitlab'
+
