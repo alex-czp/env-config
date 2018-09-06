@@ -1,0 +1,22 @@
+version: '3'
+
+volumes:
+  seafile:
+
+services:
+  seafile:
+    image: 'seafileltd/seafile:latest'
+    restart: always
+    hostname: 'seafile.alexc.cn'
+    environment:
+      SEAFILE_SERVER_HOSTNAME: seafile.alexc.cn
+      SEAFILE_ADMIN_EMAIL: alexcdever@gmail.com
+      SEAFILE_ADMIN_PASSWORD: zxc121233323223.
+      SEAFILE_SERVER_LETSENCRYPT: true
+    ports:
+      - '8080:80'
+      - '8443:443'
+      - '822:22'
+    volumes:
+      - 'seafile:/shared'
+
