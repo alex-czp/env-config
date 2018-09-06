@@ -9,10 +9,10 @@ services:
     restart: always
     hostname: 'seafile.alexc.cn'
     environment:
-      SEAFILE_SERVER_HOSTNAME: seafile.alexc.cn
-      SEAFILE_ADMIN_EMAIL: alexcdever@gmail.com
-      SEAFILE_ADMIN_PASSWORD: zxc121233323223.
-      SEAFILE_SERVER_LETSENCRYPT: true
+      SEAFILE_SERVER_HOSTNAME: "seafile.alexc.cn"
+      SEAFILE_ADMIN_EMAIL: "alexcdever@gmail.com"
+      SEAFILE_ADMIN_PASSWORD: "zxc121233323223."
+      SEAFILE_SERVER_LETSENCRYPT: "true"
     ports:
       - '8080:80'
       - '8443:443'
