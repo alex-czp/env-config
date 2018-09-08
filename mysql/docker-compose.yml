@@ -1,0 +1,15 @@
+version: '3'
+volumes:
+  data:
+  conf:
+services:
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
+    ports:
+      - 6606:3306
+    volumes:
+      - data:/var/lib/mysql
+      - conf:/etc/mysql/mysql.conf.d
+    environment:
+      MYSQL_ROOT_PASSWORD: "root"
