@@ -1,0 +1,21 @@
+version: '3'
+
+networks:
+   nexus:
+     driver: bridge
+
+volumes:
+  nexus:
+
+services:
+  nexus:
+    image: 'sonatype/docker-nexus3'
+    restart: always
+    hostname: 'nexus.alexc.cn'
+    environment: 
+      JAVA_MAX_MEM: 768m
+    ports:
+      - '8081:8081'
+    volumes:
+      - 'nexus:/nexus-data'
+
