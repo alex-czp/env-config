@@ -6,7 +6,7 @@ networks:
 
 volumes:
   nexus:
-
+# 初始账号的账号密码分别是admin和admin123
 services:
   nexus:
     image: 'sonatype/docker-nexus3'
