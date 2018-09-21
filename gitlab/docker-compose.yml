@@ -10,9 +10,9 @@ volumes:
   gitlab_log:
   gitlab_data:
 
-services:
-# gitlab
+services: 
   gitlab:
+    #中文版gitlab
     image: 'beginor/gitlab-ce:11.1.4-ce.0'
     restart: always
     hostname: 'gitlab.alexc.cn'
