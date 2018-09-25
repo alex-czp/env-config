@@ -10,6 +10,7 @@ networks:
 
 services:
   prometheus:
+    container_name: prometheus
     image: prom/prometheus:v2.0.0
     volumes:
       - ./prometheus/:/etc/prometheus/
@@ -27,6 +28,7 @@ services:
       - back-tier
 
   grafana:  
+    container_name: grafana
     image: grafana/grafana
     depends_on:
       - prometheus
@@ -42,6 +44,7 @@ services:
       - front-tier
  
   metrics:
+    container_name: metrics
     tty: true
     stdin_open: true
     expose:

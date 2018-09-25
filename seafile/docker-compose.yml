@@ -6,7 +6,7 @@ services:
   seafile:
     image: 'seafileltd/seafile:latest'
     restart: always
-    hostname: 'seafile.alexc.cn'
+    container_name: seafile
     environment:
       SEAFILE_SERVER_HOSTNAME: "seafile.alexc.cn"
       SEAFILE_ADMIN_EMAIL: "alexcdever@gmail.com"

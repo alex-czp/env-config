@@ -15,7 +15,7 @@ services:
     #中文版gitlab
     image: 'beginor/gitlab-ce:11.1.4-ce.0'
     restart: always
-    hostname: 'gitlab.alexc.cn'
+    container_name: gitlab
     environment:
       GITLAB_OMNIBUS_CONFIG: |
       # external_url 'https://gitlab.example.com'

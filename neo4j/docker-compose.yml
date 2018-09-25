@@ -4,8 +4,8 @@ volumes:
   neo4j_data: 
 
 services:
-  
   neo4j:
+    container_name: neo4j
     image: neo4j
     restart: always
     ports:
