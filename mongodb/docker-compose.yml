@@ -8,6 +8,7 @@ volumes:
 services:
   # mongoDB
   mongo:
+    container_name: mongoDB
     image: mongo
     restart: always
     ports:
@@ -20,6 +21,7 @@ services:
       - "mongo_data:/data/db"
   # MongoDB的可视化页面
   mongo-express:
+    container_name: mongo-express
     image: mongo-express
     restart: always
     ports:
