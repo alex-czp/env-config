@@ -10,6 +10,7 @@ services:
   mongo:
     image: mongo
     restart: always
+    container_name: mongo
     ports:
       - 27017:27017
     environment:
@@ -20,6 +21,7 @@ services:
       - "mongo_data:/data/db"
   # MongoDB的可视化页面
   mongo-express:
+    container_name: mongo-express
     image: mongo-express
     restart: always
     ports:
