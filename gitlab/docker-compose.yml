@@ -1,9 +1,4 @@
 version: '3'
-
-networks:
-   CI:
-     driver: bridge
-
 volumes:
   db:
   gitlab_config:
