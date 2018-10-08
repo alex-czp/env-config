@@ -1,0 +1,25 @@
+#docker run -d --name sql_server_demo -e'ACCEPT_EULA = Y'-e'SA_PASSWORD = reallyStrongPwd123'-p 1433：1433 microsoft / mssql-server-linux
+version: '3.1'
+networks:
+   mssql-empty:
+     driver: bridge
+volumes:
+  mssql-empty: 
+services:
+  mssql-empty: 
+    image: microsoft/mssql-server-linux
+    container_name: mssql-empty
+    privileged: true
+    restart: always
+    ports: 
+      - "1433:1433"
+    networks:
+      - mssql-empty
+    expose:
+      - "3306"
+    volumes:
+      - "mssql-empty:/var/opt/mssql"
+    environment: 
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=G1veMeP@ss
+      
