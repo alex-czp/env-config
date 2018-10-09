@@ -1,8 +1,11 @@
 {
     "cSpell.words": [
         "MONGODB",
+        "NOSQL",
         "gitlab",
         "grafana",
-        "seafile"
+        "mssql",
+        "seafile",
+        "sonarqube"
     ]
 }
