@@ -20,7 +20,7 @@ services:
     volumes:
       - "mongo_config:/etc/mongo"
       - "mongo_data:/data/db"
-  # MongoDB的可视化页面
+  # UI of MongoDB
   mongo-express:
     container_name: mongo-express
     image: mongo-express

@@ -2,7 +2,9 @@ version: '2'
 
 volumes:
   nexus:
-# 初始账号的账号密码分别是admin和admin123
+
+# login name: admin
+# login password: admin123
 services:
   nexus:
     image: 'sonatype/nexus3:latest'

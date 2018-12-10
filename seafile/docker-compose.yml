@@ -8,9 +8,13 @@ services:
     restart: always
     container_name: seafile
     environment:
+      # host name
       SEAFILE_SERVER_HOSTNAME: "seafile.alexc.cn"
+      # admin email,can used to be login name
       SEAFILE_ADMIN_EMAIL: "alexcdever@gmail.com"
+      # admin password
       SEAFILE_ADMIN_PASSWORD: "zxc121233323223."
+      # encrypt or not
       # SEAFILE_SERVER_LETSENCRYPT: "true"
     ports:
       - '8080:80'
