@@ -11,6 +11,7 @@ services:
     expose:
       - "5432"
 
+<<<<<<< HEAD
   sonarqube:
     image: sonarqube
     container_name: sonarqube
@@ -20,3 +21,34 @@ services:
       - "9000:9000"
     links:
       - postgres
+=======
+### SonarQube Container ###########################
+# username/password：admin/admin
+    sonarqube:
+        build: ./sonarqube
+        container_name: sonar
+        restart: always
+        ports:
+            - "9000:9000"
+        links:
+            - postgres
+        environment:
+            - SONARQUBE_JDBC_URL:jdbc:postgresql://db:5432/sonar
+
+            
+### PostgreSQL Container #######################################
+
+    postgres:
+        build: ./postgres
+        container_name: PostgreSQL
+        restart: always
+        volumes:
+            - ~/log/postgres:/var/lib/postgresql/data
+        ports:
+            - "5432:5432"
+        environment:
+            - POSTGRES_USER=sonar
+            - POSTGRES_PASSWORD=sonar
+
+        
+>>>>>>> e259a9cd856cabc08a884506dd93807514355552
