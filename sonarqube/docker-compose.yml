@@ -7,6 +7,7 @@ services:
     sonarqube:
         build: ./sonarqube
         container_name: sonar
+        start: always
         ports:
             - "9000:9000"
         links:
@@ -18,14 +19,15 @@ services:
 ### PostgreSQL Container #######################################
 
     postgres:
-      build: ./postgres
-      container_name: PostgreSQL
-      volumes:
-        - ~/log/postgres:/var/lib/postgresql/data
-      ports:
-        - "5432:5432"
-      environment:
-        - POSTGRES_USER=sonar
-        - POSTGRES_PASSWORD=sonar
+        build: ./postgres
+        container_name: PostgreSQL
+        start: always
+        volumes:
+            - ~/log/postgres:/var/lib/postgresql/data
+        ports:
+            - "5432:5432"
+        environment:
+            - POSTGRES_USER=sonar
+            - POSTGRES_PASSWORD=sonar
 
         
