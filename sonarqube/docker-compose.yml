@@ -7,7 +7,7 @@ services:
     sonarqube:
         build: ./sonarqube
         container_name: sonar
-        start: always
+        restart: always
         ports:
             - "9000:9000"
         links:
@@ -21,7 +21,7 @@ services:
     postgres:
         build: ./postgres
         container_name: PostgreSQL
-        start: always
+        restart: always
         volumes:
             - ~/log/postgres:/var/lib/postgresql/data
         ports:
