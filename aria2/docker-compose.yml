@@ -2,6 +2,9 @@
 # -e ENABLE_AUTH=true -e RPC_SECRET=认证的Token -e DOMAIN=你想要绑定的域名 -e ARIA2_USER=认证登录用户名 -e ARIA2_PWD=认证登录登录密码 
 # -v /yourdata:/data -v /yoursslkeys/:/root/conf/key -v <to your aria2.conf>:/root/conf/aria2.conf wahyd4/aria2-ui
 
+# WARNING!!!
+# please don't use this directly, this still not ready to use, still need to test
+
 version: "3"
 
 services:
