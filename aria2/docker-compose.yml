@@ -1,0 +1,25 @@
+# docker run -d --name ariang -p 80:80 -p 6800:6800 -p 443:443 
+# -e ENABLE_AUTH=true -e RPC_SECRET=认证的Token -e DOMAIN=你想要绑定的域名 -e ARIA2_USER=认证登录用户名 -e ARIA2_PWD=认证登录登录密码 
+# -v /yourdata:/data -v /yoursslkeys/:/root/conf/key -v <to your aria2.conf>:/root/conf/aria2.conf wahyd4/aria2-ui
+
+version: "3"
+
+services:
+  aria2:
+    image: 'wahyd4/aria2-ui'
+    restart: always
+    container_name: aria2
+    environment:
+      - ENABLE_AUTH: ${ENABLE_AUTH}
+      - RPC_SECRET: ${RPC_SECRET}
+      - DOMAIN: ${DOMAIN}cd
+      - ARIA2_USER: ${ARIA2_USER}
+      - ARIA2_PWD: ${ARIA2_PWD}
+    ports:
+      - '8888:80'
+      - '8443:443'
+      - '6800:6800'
+    volumes:
+      - '${DATA_PATH}:/data'
+      - '${SSL_FOLDER_PATH}:/root/conf/key'
+      - 'CONF_FILE_PATH:/root/conf/aria2.conf'
