@@ -13,7 +13,7 @@ services:
     restart: always
     container_name: aria2
     environment:
-      - 'ENABLE_AUTH: ${ENABLE_AUTH} '
+      - 'ENABLE_AUTH : ${ENABLE_AUTH} '
       - 'RPC_SECRET: ${RPC_SECRET}'
       - 'DOMAIN: ${DOMAIN}'
       - 'ARIA2_USER: ${ARIA2_USER}'
