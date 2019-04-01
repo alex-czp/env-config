@@ -15,7 +15,7 @@ services:
     environment:
       - 'ENABLE_AUTH: ${ENABLE_AUTH}'
       - 'RPC_SECRET: ${RPC_SECRET}'
-      - 'DOMAIN: ${DOMAIN}cd'
+      - 'DOMAIN: ${DOMAIN}'
       - 'ARIA2_USER: ${ARIA2_USER}'
       - 'ARIA2_PWD: ${ARIA2_PWD}'
     ports:
