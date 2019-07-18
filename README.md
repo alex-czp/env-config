@@ -1,6 +1,16 @@
 # env-setup
-This project is used to collect the docker-compose files  that setup applications of development by docker.
+This project is used to collect the docker-compose files that setup applications of development by docker.
+
+I am planning to re-build all projects on my base container.
+
 ## existed projects
+
+- [base](./base)
+
+  a base container created by myself for building.
+
+  I will set up the `zsh` , all`locale-langue` in it.
+
 - [gitlab](./gitlab)
 This is made by [@beginor](https://github.com/beginor) that language is Simplified Chinese.
 This is used to be a git repository manager service platform.
