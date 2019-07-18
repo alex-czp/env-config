@@ -1,16 +1,24 @@
-FROM debian:stable-slim
+FROM ubuntu
 
 LABEL maintainer="Alexcdever alexcdever@gmail.com"
+# RUN apt clean all \
+#     apt update \
+#     apt install -y curl vim git \
+#     apt upgrade -y
 
 RUN set -ex; \
     fetchDeps=" \
-		locales-all \
-        zsh \
+    apt-transport-https \
         curl \
+        vim \
+        git \
 	"; \
-	apt-get update; \
-	apt-get install -y --no-install-recommends $fetchDeps; \
+    # apt clean all; \
+    apt-get update && apt-get install -y apt-transport-https \
+	apt update && apt upgrade -y; \
+	apt install -y --no-install-recommends $fetchDeps; \
 	rm -rf /var/lib/apt/lists/*; \
-	apt-get purge -y --auto-remove $fetchDeps;
-    
-RUN chsh -s /bin/zsh && source ~/.zsh
+	apt purge -y --auto-remove $fetchDeps; \
+    chsh -s /bin/zsh; \
+    source ~/.zsh;
+CMD [ "echo $HTTP_PROXY" ]
