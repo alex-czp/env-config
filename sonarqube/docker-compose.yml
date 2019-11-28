@@ -4,7 +4,7 @@ volumes:
   sonar-data:
 services:
   postgres:
-    image: postgres
+    image: postgres:12.1
     container_name: postgres
     restart: always
     volumes:
@@ -16,7 +16,7 @@ services:
       - "5432"
 
   sonarqube:
-    image: sonarqube
+    image: sonarqube:7.9.1-community
     container_name: sonarqube
     restart: always
     volumes:
