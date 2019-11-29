@@ -7,8 +7,7 @@ volumes:
 
 services: 
   gitlab:
-    #中文版gitlab
-    image: 'beginor/gitlab-ce:11.1.4-ce.0'
+    image: 'gitlab/gitlab-ce'
     restart: always
     container_name: gitlab
     environment:
