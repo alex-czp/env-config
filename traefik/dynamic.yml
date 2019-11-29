@@ -1,0 +1,53 @@
+http:
+  routers:
+    blog-http:
+      entryPoints:
+        - http
+      rule: "Host(`blog.alexc.cn`)"
+      middlewares:
+        - redirect-to-https
+      service: blog
+    blog-https:
+      entryPoints:
+        - https
+      rule: "Host(`blog.alexc.cn`)"
+      service: blog
+      tls: 
+        certResolver: dns_cloudflare
+        domains:
+          - main: "alexc.cn"
+            sans: 
+              - "*.alexc.cn"
+
+    dashboard-http:
+      entryPoints:
+        - http
+      rule: "Host(`traefik.alexc.cn`)"
+      middlewares:
+        - redirect-to-https
+      service: api@internal
+
+    dashboard-https:
+      entryPoints:
+        - https
+      rule: "Host(`traefik.alexc.cn`)"
+      service: api@internal
+      tls: 
+        certResolver: dns_cloudflare
+        domains:
+          - main: "alexc.cn"
+            sans: 
+              - "*.alexc.cn"
+
+  middlewares:
+    redirect-to-https:
+      redirectScheme:
+        permanent: true
+        port: 443
+        scheme: https
+
+  services:
+    blog:
+      loadBalancer:
+        servers:
+        - url: http://blog

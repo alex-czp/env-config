@@ -1,0 +1,68 @@
+global:
+  checkNewVersion: true
+  sendAnonymousUsage: true
+
+entryPoints:
+  http:
+    address: :80
+  https:
+    address: :443
+
+providers:
+  # providersThrottleDuration: 2s
+  file:
+    # filename: /etc/traefik/dynamic.d/dynamic.yml
+    directory: /etc/traefik/dynamic.d
+    watch: true
+  docker:
+    watch: true
+    endpoint: unix:///var/run/docker.sock
+    exposedbydefault: false
+
+api:
+  insecure: true
+  dashboard: true
+  debug: true
+
+log:
+  filePath: "/data/traefik/log/traefik.log"
+  level: DEBUG
+  format: json
+
+accessLog:
+  filePath: "/data/traefik/log/access.log"
+  format: json  
+  bufferingSize: 100
+  # filters:    
+  #   statusCodes:
+  #     - "100-600"
+  #   retryAttempts: true
+  #   minDuration: "10ms"
+
+certificatesResolvers:
+  dns:
+    acme:
+      email: alexcdever@gmail.com
+      storage: /data/traefik/ca/acme.json
+      dnsChallenge:
+        provider: dnspod
+
+  dns_cloudflare:
+    acme:
+      email: alexcdever@gmail.com
+      storage: /data/traefik/ca/acme.json
+      dnsChallenge:
+        provider: cloudflare
+
+  tls:
+    acme:
+      email: alexcdever@gmail.com
+      storage: /data/traefik/ca/acme.json
+      tlsChallenge: {}
+
+  http:
+    acme:
+      email: alexcdever@gmail.com
+      storage: /data/traefik/ca/acme.json
+      httpChallenge:
+        entryPoint: web
