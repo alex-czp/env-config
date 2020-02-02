@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+    rancher:
+        image: rancher/rancher:stable
+        container_name: rancher-server
+        ports: 
+            - 80:80
+            - 443:443
+        volumes: 
+            - "./rancher:/var/lib/rancher"
+            - "./log:/var/log/auditlog"
+        environment: 
+            - AUDIT_LEVEL=3
+            - CATTLE_SYSTEM_CATALOG=bundled
