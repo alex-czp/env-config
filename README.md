@@ -2,8 +2,6 @@
 
 This project is used to collect the docker-compose files that setup applications of development by docker.
 
-I am planning to re-build all projects on my base container.
-
 ## existed projects
 
 - [base](./base)(developing)
@@ -17,6 +15,8 @@ This is made by [@beginor](https://github.com/beginor) that language is Simplifi
 This is used to be a git repository manager service platform.
 
 - [grafana](./grafana)
+
+- [mariadb](./mariadb)
 
 - [mongodb](./mongodb)
 This is a NOSQL database.[the official site](https://www.mongodb.com/)
