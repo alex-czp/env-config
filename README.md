@@ -1,4 +1,4 @@
-# env-setup
+# service-collection
 
 This project is used to collect the docker-compose files that setup applications of development by docker.
 
@@ -21,8 +21,7 @@ This is used to be a git repository manager service platform.
 - [mongodb](./mongodb)
 This is a NOSQL database.[the official site](https://www.mongodb.com/)
 
-- [mysql](./mysql)
-This is mysql,but it's version is 5.7,not 8.0
+- [mysql-5.7](./mysql-5.7)
 
 - [mssql](./mssql)
 This is the Microsoft's SQL Server for linux
