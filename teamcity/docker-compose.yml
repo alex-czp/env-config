@@ -1,0 +1,19 @@
+version: '3.7'
+
+networks: 
+    teamcity:
+        name: teamcity
+
+volumes: 
+    data:
+    logs:
+
+services:
+    teamcity:
+        image: jetbrains/teamcity-server:latest
+        container_name: teamcity
+        ports: 
+            - 8111:8111
+        volumes: 
+            - "data:/data/teamcity_server/datadir"
+            - "logs:/opt/teamcity/logs"
