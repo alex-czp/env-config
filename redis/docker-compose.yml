@@ -11,10 +11,11 @@ services:
     redis:
         image: redis:5.0-alpine
         container_name: redis
+        restart: always
         networks: 
             - redis
-        ports: 
-            - 8111:8111
+        # ports: 
+        #     - 8111:8111
         volumes: 
             - "data:/data"
             - "./config:/usr/local/etc/redis"

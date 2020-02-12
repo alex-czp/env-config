@@ -1,4 +1,4 @@
-version: '3'
+version: '3.7'
 
 networks: 
     rancher:
@@ -7,6 +7,7 @@ services:
     rancher:
         image: rancher/rancher:stable
         container_name: rancher-server
+        restart: always
         ports: 
             - 80:80
             - 443:443
