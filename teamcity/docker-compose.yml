@@ -12,6 +12,8 @@ services:
     teamcity:
         image: jetbrains/teamcity-server:latest
         container_name: teamcity
+        networks: 
+            - teamcity
         ports: 
             - 8111:8111
         volumes: 
