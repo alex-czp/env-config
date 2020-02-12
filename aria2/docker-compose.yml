@@ -5,7 +5,7 @@
 # WARNING!!!
 # please don't use this directly, this still not ready to use, still need to test
 
-version: "3.1"
+version: '3.7'
 
 services:
   aria2:
