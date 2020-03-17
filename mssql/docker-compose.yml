@@ -1,7 +1,7 @@
 version: '3.7'
 networks:
    mssql:
-     driver: bridge
+    name: 'mssql'
 volumes:
   mssql: 
 services:
@@ -14,8 +14,6 @@ services:
       - "1433:1433"
     networks:
       - mssql
-    expose:
-      - "3306"
     volumes:
       - "mssql:/var/opt/mssql"
     environment: 
