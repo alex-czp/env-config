@@ -6,7 +6,6 @@ volumes:
 
 
 services:
-  # mongoDB
   mongo:
     container_name: mongoDB
     image: mongo
