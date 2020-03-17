@@ -1,0 +1,13 @@
+version: '3.7'
+
+volumes:
+  home:
+services:
+  solr:
+    image: solr:8.4.1
+    container_name: solr
+    restart: always
+    ports:
+      - 8983:8983
+    volumes:
+      - home:/var/solr
