@@ -2,14 +2,14 @@
 # apt
 apt() {
   installBasicApps
-  sudo apt autoremove -y
+  apt autoremove -y
 }
 ## update & upgrade apt package
 installBasicApps() {
   echo "---START TO INSTALL THE BASIC APPS---"
-  sudo apt update
-  #  sudo apt upgrade -y
-  sudo apt install curl git vim -y
+  apt update
+  apt upgrade -y
+  apt install curl git vim -y
   echo "---FINISH TO INSTALL THE BASIC APPS---"
 }
 
@@ -19,10 +19,12 @@ zsh() {
   if [ "$(echo $SHELL | grep "zsh")" ]; then
     echo "You are using zsh"
   else
+    echo "Start to change shell to zsh"
     changeToZsh
-    installOhMyZsh
-    installZshPlugins
   fi
+
+  installOhMyZsh
+  installZshPlugins
 }
 ## change the shell to zsh
 changeToZsh() {
@@ -30,14 +32,16 @@ changeToZsh() {
   if [ "$(which zsh | grep "zsh")" ]; then
     echo "Zsh already existed"
   else
-    sudo apt install zsh -y
+  echo "Installing zsh"
+    apt install zsh -y
   fi
 
   if [ "$(echo $SHELL | grep "zsh" )"]; then
     echo "you are using zsh"
-  # else
-    # sudo chsh -s "$(command -v zsh)"
-    # echo "Installed zsh successfully, please close current terminal and open the new one, execute this script again"
+  else
+    chsh -s "$(which zsh)"
+    echo "Installed zsh successfully, will kill the current terminal"
+    # reboot
   fi
   echo "---CHANGED TO ZSH---"
 }
@@ -47,8 +51,8 @@ installOhMyZsh() {
   if [ -d "$HOME/.oh-my-zsh" ]; then
     echo "OH-MY-ZSH already installed"
   else
-    sudo sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
-    exit
+    sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+    kill -9 $PPID
   fi
 
 }
@@ -89,8 +93,9 @@ installZshPlugins() {
     plugins=$newPlugins
   fi
 
-  #re-import for appling the config
-  source "$HOME/.zshrc"
+  # this may cause some error to oh-my-zsh.sh, so commented
+  # #re-import for appling the config
+  # source "$HOME/.zshrc"
 
   echo "Now this plugins are installed: ${plugins[*]}, please remove the Repeated elements and update the 'plugins' array of '$HOME/.zshrc' manually"
 
@@ -119,23 +124,23 @@ installLinuxbrew() {
     echo "Current shell is Zsh"
     shellConfigFile=$HOME/.zshrc
   else
-    echo "Currents hell is $SHELL"
+    echo "Current shell is $SHELL"
     shellConfigFile=$HOME/.profile
   fi
   zsh -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
   # simulate the ENTER key
   echo -ne "\n"
-  test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
-  test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-  test -r "$shellConfigFile" && echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>"$shellConfigFile"
-  echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>"$shellConfigFile"
+  # test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
+  # test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  # test -r "$shellConfigFile" && echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>"$shellConfigFile"
+  # echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>"$shellConfigFile"
 
 }
 
 # sdkman
 sdkman() {
   echo "---START TO INSTALL SDKMAN---"
-  if [ "$(sdk info)" ]; then
+  if [ -d "$HOME/.sdkman" ]; then
     echo "Sdkman already installed"
   else
     installSdkman
@@ -176,12 +181,7 @@ installDocker() {
 
   sudo apt-get update
 
-  sudo apt-get install \
-    apt-transport-https \
-    ca-certificates \
-    curl \
-    gnupg2 \
-    software-properties-common
+  sudo apt-get install apt-transport-https ca-certificates gnupg2 software-properties-common -y
 
   curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
 
@@ -206,8 +206,8 @@ installDockerCompose() {
   echo "---FINISH TO INSTALL DOCKER-COMPOSE---"
 }
 
-apt
-zsh
-linuxbrew $USER
+sudo apt
+sudo zsh
+#linuxbrew $USER
 #sdkman
 #docker
