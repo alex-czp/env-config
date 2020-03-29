@@ -1,21 +1,16 @@
 version: '3.7'
 
-networks: 
+services: 
     teamcity:
-        name: teamcity
-
-volumes: 
-    data:
-    logs:
-
-services:
-    teamcity:
-        image: jetbrains/teamcity-server:latest
+        image: jetbrains/teamcity-server:2019.2.2
         container_name: teamcity
-        networks: 
-            - teamcity
+        restart: always
         ports: 
             - 8111:8111
+        healthcheck:
+            test: ["CMD-SHELL", "wget -q --spider --proxy off localhost:8111/ping || exit 1"]
         volumes: 
-            - "data:/data/teamcity_server/datadir"
-            - "logs:/opt/teamcity/logs"
+            - "./data:/data/teamcity_server/datadir"
+            - "./logs:/opt/teamcity/logs"
+            # sync the time
+            - "/etc/localtime:/etc/localtime:ro"
