@@ -179,9 +179,9 @@ installDocker() {
 
   sudo apt remove docker docker-engine docker.io containerd runc -y
 
-  sudo apt-get update
+  sudo apt update
 
-  sudo apt-get install apt-transport-https ca-certificates gnupg2 software-properties-common -y
+  sudo apt install apt-transport-https ca-certificates gnupg2 software-properties-common -y
 
   curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
 
@@ -189,7 +189,7 @@ installDocker() {
 
   sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable"
 
-  sudo apt-get update
+  sudo apt update
 
   sudo apt-get install docker-ce docker-ce-cli containerd.io -y
 
